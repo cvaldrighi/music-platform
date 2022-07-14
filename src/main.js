@@ -4,6 +4,7 @@ import router from './router';
 import store from './store';
 import './assets/tailwind.css';
 import './assets/main.css';
+import './includes/firebase.js'
 import VeeValidatePlugin from './includes/validation.js';
 
 let app = createApp(App);
