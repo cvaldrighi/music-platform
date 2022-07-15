@@ -14,9 +14,6 @@ export default createStore({
       state.userLoggedIn = !state.userLoggedIn;
     }
   },
-  getters: {
-    //authModalShow: (state) => state.authModalShow,
-  },
   actions: {
     async register({ commit }, payload) {
       const userCred = await auth.createUserWithEmailAndPassword(
