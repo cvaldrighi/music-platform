@@ -217,11 +217,6 @@
   </section>
 </template>
 
-<script>
-export default {
+<script src="./Home.js">
 
-}
 </script>
-
-<style>
-</style>

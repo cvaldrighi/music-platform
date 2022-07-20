@@ -43,8 +43,8 @@
   <auth-modal />
 </template>
   <script>
-  import AppHeader from './components/Header.vue';
-  import AuthModal from './components/Auth.vue';
+  import AppHeader from './components/Header/Header.vue';
+  import AuthModal from './components/Auth/Auth.vue';
   
   export default {
     name: 'App',

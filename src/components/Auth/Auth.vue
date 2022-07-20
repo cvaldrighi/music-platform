@@ -50,26 +50,5 @@
         </div>
     </div>
 </template>
-<script>
-import { mapMutations, mapState } from 'vuex';
-import AppLoginForm from './LoginForm.vue';
-import AppRegisterForm from './RegisterForm.vue';
-
-export default {
-    name: 'Auth',
-    data() {
-        return {
-            tab: 'login',
-        }
-    },
-    components: {
-        AppLoginForm, AppRegisterForm,
-    },
-    computed: {
-        ...mapState(['authModalShow']),
-    },
-    methods: {
-        ...mapMutations(['toggleAuthModal']),
-    }
-};
+<script src="./Auth.js">
 </script>

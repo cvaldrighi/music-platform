@@ -96,12 +96,5 @@
         </div>
     </section>
 </template>
-<script>
-import AppUpload from '@/components/Upload.vue';
-export default {
-    name: "manage",
-    components: {
-        AppUpload
-    }
-}
+<script src="./Manage.js">
 </script>
