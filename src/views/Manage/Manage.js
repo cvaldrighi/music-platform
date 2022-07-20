@@ -3,5 +3,9 @@ export default {
     name: "manage",
     components: {
         AppUpload
-    }
+    },
+    /* beforeRouteLeave(to, from, next) {
+         this.$refs.upload.cancelUploads();
+         next();
+     } */
 }

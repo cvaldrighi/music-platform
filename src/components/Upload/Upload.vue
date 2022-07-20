@@ -15,26 +15,19 @@
                 @dragleave.prevent.stop="is_dragover = false" @drop.prevent.stop="upload($event)">
                 <h5>Drop your files here</h5>
             </div>
+            <input type="file" multiple @change="upload($event)" />
             <hr class="my-6" />
             <!-- Progess Bars -->
-            <div class="mb-4">
+            <div class="mb-4" v-for="upload in uploads" :key="upload.name">
                 <!-- File Name -->
-                <div class="font-bold text-sm">Just another song.mp3</div>
+                <div class="font-bold text-sm" :class="upload.text_class">
+                    <i :class="upload.icon"></i>
+                    {{ upload.name }}
+                </div>
                 <div class="flex h-4 overflow-hidden bg-gray-200 rounded">
                     <!-- Inner Progress Bar -->
-                    <div class="transition-all progress-bar bg-blue-400" style="width: 75%"></div>
-                </div>
-            </div>
-            <div class="mb-4">
-                <div class="font-bold text-sm">Just another song.mp3</div>
-                <div class="flex h-4 overflow-hidden bg-gray-200 rounded">
-                    <div class="transition-all progress-bar bg-blue-400" style="width: 35%"></div>
-                </div>
-            </div>
-            <div class="mb-4">
-                <div class="font-bold text-sm">Just another song.mp3</div>
-                <div class="flex h-4 overflow-hidden bg-gray-200 rounded">
-                    <div class="transition-all progress-bar bg-blue-400" style="width: 55%"></div>
+                    <div class="transition-all progress-bar" :class="upload.variant"
+                        :style="{ width: upload.current_progress + '%' }"></div>
                 </div>
             </div>
         </div>
