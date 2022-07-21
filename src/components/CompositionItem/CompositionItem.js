@@ -53,7 +53,7 @@ export default {
             }
 
             this.updateSong(this.index, values);
-            this.updateUnsaveFlag(false);
+            this.updateUnsavedFlag(false);
 
             this.in_submission = false;
             this.alert_variant = 'bg-green-500';
