@@ -26,17 +26,24 @@
                 <i class="fa fa-comments float-right text-green-400 text-2xl"></i>
             </div>
             <div class="p-6">
-                <form>
-                    <textarea class="block w-full py-1.5 px-3 text-gray-800 border border-gray-300 transition
-              duration-500 focus:outline-none focus:border-black rounded mb-4"
-                        placeholder="Your comment here..."></textarea>
-                    <button type="submit" class="py-1.5 px-3 rounded text-white bg-green-600 block">
+                <div class="text-white text-center font-bold p-4 mb-4" v-if="comment_show_alert"
+                    :class="comment_alert_variant">
+                    {{ comment_alert_message }}
+                </div>
+                <vee-form :validation-schema="schema" @submit="addComment" v-if="userLoggedIn">
+                    <vee-field as="textarea" name="comment" class="block w-full py-1.5 px-3 text-gray-800 border border-gray-300 transition
+                    duration-500 focus:outline-none focus:border-black rounded mb-4"
+                        placeholder="Your comment here..."></vee-field>
+
+                    <ErrorMessage class="text-red-600" name="comment" />
+                    <button type="submit" class="py-1.5 px-3 rounded text-white bg-green-600 block"
+                        :disabled="comment_in_submission">
                         Submit
                     </button>
-                </form>
+                </vee-form>
                 <!-- Sort Comments -->
-                <select class="block mt-4 py-1.5 px-3 text-gray-800 border border-gray-300 transition
-          duration-500 focus:outline-none focus:border-black rounded">
+                <select v-model="sort" class="block mt-4 py-1.5 px-3 text-gray-800 border border-gray-300 transition
+                    duration-500 focus:outline-none focus:border-black rounded">
                     <option value="1">Latest</option>
                     <option value="2">Oldest</option>
                 </select>
@@ -45,76 +52,14 @@
     </section>
     <!-- Comments -->
     <ul class="container mx-auto">
-        <li class="p-6 bg-gray-50 border border-gray-200">
+        <li class="p-6 bg-gray-50 border border-gray-200" v-for="comment in sortedComments" :key="comment.docID">
             <!-- Comment Author -->
             <div class="mb-5">
-                <div class="font-bold">Elaine Dreyfuss</div>
-                <time>5 mins ago</time>
+                <div class="font-bold">{{ comment.name }}</div>
+                <time>{{ comment.datePosted }}</time>
             </div>
-
             <p>
-                Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-                accusantium der doloremque laudantium.
-            </p>
-        </li>
-        <li class="p-6 bg-gray-50 border border-gray-200">
-            <!-- Comment Author -->
-            <div class="mb-5">
-                <div class="font-bold">Elaine Dreyfuss</div>
-                <time>5 mins ago</time>
-            </div>
-
-            <p>
-                Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-                accusantium der doloremque laudantium.
-            </p>
-        </li>
-        <li class="p-6 bg-gray-50 border border-gray-200">
-            <!-- Comment Author -->
-            <div class="mb-5">
-                <div class="font-bold">Elaine Dreyfuss</div>
-                <time>5 mins ago</time>
-            </div>
-
-            <p>
-                Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-                accusantium der doloremque laudantium.
-            </p>
-        </li>
-        <li class="p-6 bg-gray-50 border border-gray-200">
-            <!-- Comment Author -->
-            <div class="mb-5">
-                <div class="font-bold">Elaine Dreyfuss</div>
-                <time>5 mins ago</time>
-            </div>
-
-            <p>
-                Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-                accusantium der doloremque laudantium.
-            </p>
-        </li>
-        <li class="p-6 bg-gray-50 border border-gray-200">
-            <!-- Comment Author -->
-            <div class="mb-5">
-                <div class="font-bold">Elaine Dreyfuss</div>
-                <time>5 mins ago</time>
-            </div>
-
-            <p>
-                Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-                accusantium der doloremque laudantium.
-            </p>
-        </li>
-        <li class="p-6 bg-gray-50 border border-gray-200">
-            <!-- Comment Author -->
-            <div class="mb-5">
-                <div class="font-bold">Elaine Dreyfuss</div>
-                <time>5 mins ago</time>
-            </div>
-
-            <p>
-                Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-                accusantium der doloremque laudantium.
+                {{ comment.content }}
             </p>
         </li>
     </ul>
