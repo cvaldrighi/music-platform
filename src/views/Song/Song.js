@@ -1,5 +1,5 @@
 import { songsCollection, auth, commentsCollection } from "@/includes/firebase";
-import { mapState } from "vuex";
+import { mapState, mapActions } from "vuex";
 
 export default {
     name: 'Song',
@@ -42,6 +42,7 @@ export default {
         this.getComments();
     },
     methods: {
+        ...mapActions(['newSong']),
         async addComment(values, { resetForm }) {
             this.comment_in_submission = true;
             this.comment_show_alert = true;
@@ -57,6 +58,11 @@ export default {
             };
 
             await commentsCollection.add(comment);
+
+            this.song.comment_count += 1;
+            await songsCollection.doc(this.$route.params.id).update({
+                comment_count: this.song.comment_count,
+            });
 
             this.getComments();
             this.comment_in_submission = false;
