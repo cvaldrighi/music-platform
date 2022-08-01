@@ -6,6 +6,7 @@ import './assets/tailwind.css';
 import './assets/main.css';
 import { auth } from './includes/firebase.js'
 import VeeValidatePlugin from './includes/validation.js';
+import Icon from './directives/icon';
 
 let app;
 
@@ -16,6 +17,7 @@ auth.onAuthStateChanged(() => {
         app.use(store);
         app.use(router);
         app.use(VeeValidatePlugin);
+        app.directive('icon', Icon);
 
         app.mount('#app');
     }
